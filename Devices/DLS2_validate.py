@@ -4,10 +4,10 @@ from genie.utils.diff import Diff
 
 
 testbed = loader.load('network_testbed.yml')
-device = testbed.devices['DLS1']
+device = testbed.devices['DLS2']
 
 expected_config = {
-    "hostname": "DLS1",
+    "hostname": "DLS2",
     "vlan": {
         10: "CORE",
         20: "MGMT",
@@ -33,10 +33,10 @@ expected_config = {
             "mode": "trunk",
             "native_vlan": 99,
             "encapsulation": "dot1q",
-        } for i in range(5,6)}
+        } for i in range(4,5)}
         },
         "GigabitEthernet0/1": {
-            "ip_address": "172.16.12.225",
+            "ip_address": "172.16.12.230",
             "mask": "255.255.255.252",
             "status": "up"
         },
