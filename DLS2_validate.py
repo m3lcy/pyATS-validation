@@ -7,7 +7,7 @@ testbed = loader.load('network_testbed.yml')
 device = testbed.devices['DLS2']
 
 expected_config = {
-    "hostname": "DLS1",
+    "hostname": "DLS2",
     "vlan": {
         10: "CORE",
         20: "MGMT",
