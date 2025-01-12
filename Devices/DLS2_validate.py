@@ -6,6 +6,7 @@ from genie.utils.diff import Diff
 testbed = loader.load('network_testbed.yml')
 device = testbed.devices['DLS2']
 
+# Main config 
 expected_config = {
     "hostname": "DLS2",
     "vlan": {
