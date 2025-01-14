@@ -167,7 +167,7 @@ def validate_banner():
 def validate_vty_lines():
     output = devices.parse("show running-config | include line vty")
     assert f"password {expected_config['security']['line_vty']['password']}" in output, "VTY password mismatch"
-    assert f"transport input {expected_config['security']['line_vty']['transport_input']}" in output, "VTY transport insput mismatch"
+    assert f"transport input {expected_config['security']['line_vty']['transport_input']}" in output, "VTY transport input mismatch"
 
 if __name__ == "__main__":
     device.connect()
