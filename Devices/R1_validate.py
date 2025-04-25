@@ -44,6 +44,7 @@ expected_config = {
                 "172.17.0.0 0.0.255.255 area 0"
             ]
         },
+        
         "rip": {
             "version": 2,
             "networks": [
@@ -74,19 +75,19 @@ expected_config = {
             "vlan30": {
                 "network": "172.16.12.64" "255.255.255.224",
                 "default_router": "172.16.12.65"
-            }
+            },
             "vlan99": {
                 "network": "172.16.12.96 255.255.255.224",
                 "default_router": "172.16.12.97"
-            }
+            },
             "vlan100": {
                 "network": "172.16.12.128 255.255.255.224",
                 "defualt_router": "172.16.12.129"
-            }
+            },
             "vlan200": {
                 "network": "172.16.12.160 255.255.255.224",
                 "default_router": "172.16.12.161"
-            }
+            },
             "vlan300": {
                 "network": "172.16.12.192 255.255.255.224",
                 "default_router": "172.16.12.193"
@@ -98,17 +99,18 @@ expected_config = {
         "line_vty": {
             "password": "cisco123",
             "login_local": True,
-            "transport_input: ssh"
-        }
+            "transport_input": "ssh"
+        },
         "ssh_key": {
-            "modulus": "1024"
+            "modulus": "1024",
             "label": "ssh-key"
         }
     },
     "nat": {
         "outside": "Serial0/0/0"
-    }
+    },
 }
+
 
 def validate_hostname():
     output = device.parse("show running-config | include hostname")
@@ -122,13 +124,13 @@ def validate_interfaces():
     interfaces = device.parse("show interface")
     for iface, config in expected_config['interfaces'].items():
         assert iface in interfaces, f"interfaces {iface} not found"     
-        assert interfaces[iface]["ip_address"] == config["ip_address"], f"{ifaces} IP address mismatch"
-        assert interfaces[iface]["mask"] == config["mask"], f"{ifaces} mask mismatch"
-        assert interfaces[iface]["status"] == config["status"], f"{ifaces} status mismatch"
+        assert interfaces[iface]["ip_address"] == config["ip_address"], f"{iface} IP address mismatch"
+        assert interfaces[iface]["mask"] == config["mask"], f"{iface} mask mismatch"
+        assert interfaces[iface]["status"] == config["status"], f"{iface} status mismatch"
         if 'duplex' in config:
-            assert interfaces[iface]["duplex"] == config["duplex"], f"{ifaces} duplex mismatch"
+            assert interfaces[iface]["duplex"] == config["duplex"], f"{iface} duplex mismatch"
         if 'speed' in config: 
-            assert interfaces[iface]["speed"] == config["speed"], f"{ifaces} speed mismatch"   
+            assert interfaces[iface]["speed"] == config["speed"], f"{iface} speed mismatch"   
 
 def validate_routing(): 
     ospf = device.parse("show ip ospf")
@@ -165,7 +167,7 @@ def validate_banner():
     assert expected_config["banner"] in output, "Banner mismatch"
 
 def validate_vty_lines():
-    output = devices.parse("show running-config | include line vty")
+    output = device.parse("show running-config | include line vty")
     assert f"password {expected_config['security']['line_vty']['password']}" in output, "VTY password mismatch"
     assert f"transport input {expected_config['security']['line_vty']['transport_input']}" in output, "VTY transport input mismatch"
 
