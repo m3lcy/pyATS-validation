@@ -4,10 +4,10 @@ from genie.utils.diff import Diff
 
 
 testbed = loader.load('network_testbed.yml')
-device = testbed.devices['R1']
+device = testbed.devices['core-r1']
 
 expected_config = {
-    "hostname": "R1",
+    "hostname": "core-r1",
     "password": "cisco",
     "username": "admin",
     "banner": "Authorized Access Only!!!",

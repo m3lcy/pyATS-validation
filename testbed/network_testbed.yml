@@ -6,7 +6,7 @@ testbed:
       password: cisco
 
 devices:
-  R1:
+  core-r1:
     connections:
       cli:
         ip: 192.168.12.35
@@ -14,7 +14,7 @@ devices:
         protocol: ssh
     os: iosxe
     type: iosxe
-  DLS1:
+  l3-sw-01:
     connections:
       cli: 
         ip: 192.168.12.36
@@ -22,7 +22,7 @@ devices:
         protocol: ssh
     os: iosxe
     type: iosxe
-  DLS2:
+  l3-sw-02:
     connections:
       cli:
         ip: 192.168.12.37
@@ -30,7 +30,7 @@ devices:
         protocol: ssh
     os: iosxe
     type: iosxe
-  SW1:
+  access-sw-01:
     connections:
       cli:
         ip: 192.168.12.38
@@ -38,7 +38,7 @@ devices:
         protocol: ssh
     os: iosxe
     type: iosxe
-  SW2:
+  access-sw-02:
     connections: 
       cli:
         ip: 192.168.12.39
@@ -46,7 +46,7 @@ devices:
         protocol: ssh
     os: iosxe
     type: iosxe
-  SW3:
+  access-sw-03:
     connections:
       cli:
         ip: 192.168.12.40
@@ -54,7 +54,7 @@ devices:
         protocol: ssh
     os: iosxe
     type: iosxe
-  SW4:
+  access-sw-04:
     connections:
       cli:
         ip: 192.168.12.41
@@ -64,43 +64,43 @@ devices:
     type: iosxe
 
 topology:
- R1:
+ core-r1:
   interfaces:
    GigabitEthernet1: 
     ipv4: 172.16.12.229/30
     link: n1
     type: ethernet
- DLS1:
+ l3-sw-01:
   interfaces:
    GigabitEthernet1: 
     ipv4: 172.16.12.225/30
     link: n1
     type: ethernet
- DLS2:
+ l3-sw-02:
   interfaces:
    GigabitEthernet1: 
     ipv4: 172.16.12.230/30
     link: n1
     type: ethernet
- SW1:
+ access-sw-01:
   interfaces:
    vlan1: 
     ipv4: 192.168.12.38/27
     link: n1
     type: vlan
- SW2:
+ access-sw-02:
   interfaces:
    vlan1: 
     ipv4: 192.168.12.39/27
     link: n1
     type: vlan
- SW3:
+ access-sw-03:
   interfaces:
    vlan1: 
     ipv4: 192.168.12.40/27
     link: n1
     type: vlan
- SW4:
+ access-sw-04:
   interfaces:
    vlan1: 
     ipv4: 192.168.12.41/27
